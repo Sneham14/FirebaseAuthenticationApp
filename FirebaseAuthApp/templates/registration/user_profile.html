@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>User Profile</h2>
+    <p>Name: {{ user_data['displayName'] }}</p>
+    <p>Email: {{ user_data['email'] }}</p>
+    <!-- Display other user information here -->
+    <a href="{% url 'user_logout' %}">Sign Out</a>
+    {% endblock %}

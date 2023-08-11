@@ -1,0 +1,49 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Firebase Auth Web Application by Sneha</title>
+        <style>
+            * { font-size: 40px; }
+            .nav { background-color: coral; }
+            .nav a { color: white; text-decoration: none; margin: 40px; }
+        </style>
+        <!-- Include Firebase JavaScript SDK -->
+        <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js"></script>
+        <!-- Include Firebase configuration -->
+        <script>
+            var firebaseConfig = {
+  apiKey: "AIzaSyCqiQK6WX9R-RK9gd8LQhNnhg7qkcyBc-8",
+  authDomain: "fir-authproject-15f8f.firebaseapp.com",
+  projectId: "fir-authproject-15f8f",
+  storageBucket: "fir-authproject-15f8f.appspot.com",
+  messagingSenderId: "153096973347",
+  appId: "1:153096973347:web:25003863aca9ee969b9596"
+};
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+        </script>
+    </head>
+    <body>
+        <center>
+            <div class="nav">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'home_page' %}">Home Page</a>
+                    <a href="{% url 'user_logout' %}">User Logout</a>
+                    <a href="{% url 'password_reset' %}">Password Reset</a>
+                {% else %}
+                    <a href="{% url 'user_login' %}">User Login</a>
+                    <a href="{% url 'user_register' %}">User Register</a>
+                {% endif %}
+            </div>
+            {% if user.is_authenticated %}
+                <p class="auth-status">You are logged in as {{ user.email }}</p>
+            {% else %}
+                <p class="auth-status">You are not logged in.</p>
+            {% endif %}
+            {% block content %}
+            {% endblock %}
+        </center>
+    </body>
+    </html>
+    
